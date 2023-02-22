@@ -39,7 +39,7 @@ public class Student extends Person
 					if(Objects.equals(courseName, course1.getCourseTitle()))
 					{
 						studentCourse.add(courseName);
-						course.studentsEnrolled.add(course1.getCourseTitle());
+						course1.studentsEnrolled.add(courseName);
 						flag++;
 					}
 				if(flag==0)		
