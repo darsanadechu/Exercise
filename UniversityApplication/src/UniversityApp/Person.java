@@ -28,5 +28,9 @@ public class Person
 	{
 		return email;
 	}
+	public void setEmail(String email1)
+	{
+		email=email1;
+	}
 }
 

@@ -124,45 +124,94 @@ class University
 		{
 		
 			case 1: //update student details
+					int updateStudentChoice;
 					System.out.println("Enter id of student to be updated :");
 					int studId=sc.nextInt();
+					System.out.println("1 : Update student cgpa");
+					System.out.println("2 : Update student email");
+					System.out.println("3 : register a course");
+					System.out.println("4 : Drop a course");
+					System.out.println("Enter choice ");
+					updateStudentChoice=sc.nextInt();
+					
 					for(Student s: studentList)
 					{
 						if(s.getStudentId()==studId) 
 						{
-							studentList.remove(s);
-							s.addDetails();
-							studentList.add(s);
+							switch(updateStudentChoice)
+							{
+							
+							case 1: System.out.println("Enter new cgpa of student :");
+									s.setStudentCgpa(sc.nextDouble());
+									break;
+							case 2: System.out.println("Enter new email of student :");
+									s.setEmail(sc.next());
+									break;
+							case 3: System.out.println("Enter name of course to be registerd :");
+									s.registerCourse(sc.next());
+									break;
+							case 4: System.out.println("Enter name of course to be dropped :");
+									s.dropCourse(sc.next());
+									break;
+							default : System.out.println("Invalid choice");
+							}
 						}
 					}
+					
 					break;
 			case 2:	//update faculty details
+					int updateFacultyChoice;
 					System.out.println("Enter the Id of the faculty to be updated");
 					int facId =sc.nextInt();
+					System.out.println("1 : Update faculty position");
+					System.out.println("2 : Update faculty email");
+					System.out.println("Enter choice ");
+					updateFacultyChoice=sc.nextInt();
 					for(Faculty f: facultyList)
 					{
 						if(f.getFacultyId()==facId) 
 						{
-						facultyList.remove(f);
-						f.addDetails();
-						f.addFacultyCourse();
-						course.faculty=f;
-						facultyList.add(f);
+							switch(updateFacultyChoice)
+							{
+						
+							case 1: System.out.println("Enter new faculty position :");
+									f.setFacultyPosition(sc.next());
+									break;
+							case 2: System.out.println("Enter new email of faculty :");
+									f.setEmail(sc.next());
+									break;
+					
+							default : System.out.println("Invalid choice");
+							}
 						}
 					}
 					break;
 				
 			case 3: //update course details
+					int updateCourseChoice;
 					System.out.println("Enter the Id of the course to be updated");
 					String crId =sc.next();
+					System.out.println("1 : Update course credit");
+					System.out.println("2 : drop faculty");
+					System.out.println("3 : drop student");
+					System.out.println("Enter choice ");
+					updateCourseChoice=sc.nextInt();
 					for(Course c: courseList)
 					{
 						if(Objects.equals(crId, c.getCourseId()))
 						{
-							courseList.remove(c);
-							c.addCourse();
-							courseList.add(c);
-							break;
+							switch(updateCourseChoice)
+							{
+						
+							case 1: System.out.println("Enter new course credit :");
+									c.setCourseCredit(sc.nextDouble());
+									break;
+							case 2: c.dropFaculty();
+									break;
+							case 3: c.dropStudent();
+									break;
+							default : System.out.println("Invalid choice");
+							}
 						}
 					}
 					break;
@@ -238,7 +287,8 @@ class University
 							System.out.println("Student list: ");
 							for(String str:course.studentsEnrolled)
 								System.out.println(str);
-							displayDetails(course.faculty);
+							if(!(course.faculty==null))
+								displayDetails(course.faculty);
 						}
 					break;
 					

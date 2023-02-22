@@ -65,6 +65,18 @@ public class Student extends Person
 	{
 		return studentCGPA;
 	}
+	public void setStudentCgpa(double cgpa)
+	{
+		studentCGPA=cgpa;
+	}
+	void dropCourse(String courseName)
+	{
+		studentCourse.remove(courseName);
+	}
+	void registerCourse(String courseName)
+	{
+		studentCourse.add(courseName);
+	}
 	
 }
 

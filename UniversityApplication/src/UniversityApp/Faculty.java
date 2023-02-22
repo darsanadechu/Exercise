@@ -9,6 +9,7 @@ public class Faculty extends Person
 	private int facultyId;
 	private String facultyPosition;
 	Course Course1;
+	Scanner sc=new Scanner(System.in);
 	Faculty()
 	{
 		
@@ -16,7 +17,6 @@ public class Faculty extends Person
 	@Override public void addDetails()
 	{
 		System.out.println("Enter faculty id :");
-		Scanner sc=new Scanner(System.in);
 		this.facultyId=sc.nextInt();
 		super.addDetails();
 		System.out.println("Enter faculty position :");
@@ -25,7 +25,6 @@ public class Faculty extends Person
 	void addFacultyCourse()
 	{
 		int flag=0;
-		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter course taken :");
 		String courseName=sc.next();
 		for(Course course:university.courseList)
@@ -46,6 +45,12 @@ public class Faculty extends Person
 	{
 		return facultyPosition;
 	}
+	
+	public void setFacultyPosition(String position)
+	{
+		facultyPosition=position;
+	}
+
 }
 
 

@@ -13,6 +13,7 @@ class Course
 	private int numberOfStudents;
 	public ArrayList<String> studentsEnrolled=new ArrayList<>();
 	Faculty faculty;
+	Scanner sc=new Scanner(System.in);
 	
 	Course()
 	{
@@ -28,9 +29,9 @@ class Course
 	public void addCourse()
 	{
 		int flag=0;
-		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter course id: ");
 		this.courseId=sc.next();
+		for(Course c:university1.courseList)
 		System.out.println("Enter course title :");
 		this.courseTitle=sc.next();
 		System.out.println("Enter course credits: ");
@@ -40,22 +41,25 @@ class Course
 		System.out.println("want to add student");
 		if(sc.nextBoolean())
 		{
-			System.out.println("Enter students number of students enrolled");
+			System.out.println("Enter number of students enrolled");
 			numberOfStudents=sc.nextInt();
 			System.out.println("Enter students :");
 			for(int i=1;i<=numberOfStudents;i++)
-				studentsEnrolled.add(sc.next());
+			{
+				for(Student s:university1.studentList)
+				{
+					String str=sc.next();
+					if(Objects.equals(str, s.getName()))
+					{
+						flag++;
+						studentsEnrolled.add(str);
+					}
+				}
+				if(flag==0)
+					System.out.println("student not found");
+			}
 		}
 		
-		//drop student
-		/*System.out.println("want to drop a student");
-		if(sc.nextBoolean())
-		{
-			System.out.println("Enter name of student to be dropped");
-			String str1=sc.next();
-			for(String str:studentsEnrolled)
-				studentsEnrolled.remove(str1);
-		}*/
 		
 		//to add faculty
 		System.out.println("want to add faculty");
@@ -71,13 +75,6 @@ class Course
 				university1.facultyList.add(faculty);
 		}
 		
-		//drop faculty
-		/*System.out.println("want to drop faculty");
-		if(sc.nextBoolean())
-		{
-			faculty=null;
-			
-		}*/
 				
 	}
 	public String getCourseId()
@@ -98,6 +95,22 @@ class Course
 	public int getStudentNumber()
 	{
 		return numberOfStudents;
+	}
+	public void setCourseCredit(double credit1)
+	{
+		credit=credit1;
+	}
+	void dropFaculty()
+	{
+	
+		faculty=null;
+	}
+	void dropStudent()
+	{
+		System.out.println("Enter name of student to be dropped");
+		String str1=sc.next();
+		for(String str:studentsEnrolled)
+			studentsEnrolled.remove(str1);
 	}
 }
 
