@@ -118,8 +118,14 @@ public class BrowsersApp {
 		ArrayList<Browser> allBrowsers=new ArrayList<Browser>();
 		Browser tabOne=new GoogleChrome();
 		tabOne.whoAmI();
+		
+		//set all permissions
 		((GoogleChrome) tabOne).setPermissions(true);
 		((GoogleChrome) tabOne).viewPermissions();
+		//reset all permissions
+		((GoogleChrome) tabOne).setPermissions(false);
+		((GoogleChrome) tabOne).viewPermissions();
+		
 		((GoogleChrome) tabOne).setPermissions(false,true,false);
 		((GoogleChrome) tabOne).viewPermissions();
 		allBrowsers.add(tabOne);
@@ -148,6 +154,7 @@ public class BrowsersApp {
 		browser.leaveContainer("PrivateBrowsing");
 		
 		browser.viewAllContainers();
+	
 		
 		//wrapper class
 		int numberOfTabs=allBrowsers.size();

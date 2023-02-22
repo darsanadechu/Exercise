@@ -49,6 +49,12 @@ class University
 		case 3:	//add a course
 				Course Course1=new Course();
 				Course1.addCourse();
+				System.out.println("want to add student");
+				if(sc.nextBoolean())
+					Course1.addStudent();
+				System.out.println("want to add faculty");
+				if(sc.nextBoolean())
+					Course1.addFaculty();
 				courseList.add(Course1);
 				break;
 		
@@ -192,8 +198,10 @@ class University
 					System.out.println("Enter the Id of the course to be updated");
 					String crId =sc.next();
 					System.out.println("1 : Update course credit");
-					System.out.println("2 : drop faculty");
-					System.out.println("3 : drop student");
+					System.out.println("2 : add faculty");
+					System.out.println("3 : add student");
+					System.out.println("4 : drop faculty");
+					System.out.println("5 : drop student");
 					System.out.println("Enter choice ");
 					updateCourseChoice=sc.nextInt();
 					for(Course c: courseList)
@@ -206,9 +214,13 @@ class University
 							case 1: System.out.println("Enter new course credit :");
 									c.setCourseCredit(sc.nextDouble());
 									break;
-							case 2: c.dropFaculty();
+							case 2: c.addFaculty();
+							        break;
+					        case 3: c.addStudent();
 									break;
-							case 3: c.dropStudent();
+							case 4: c.dropFaculty();
+									break;
+							case 5: c.dropStudent();
 									break;
 							default : System.out.println("Invalid choice");
 							}
@@ -336,6 +348,7 @@ class University
 	void search()
 	{
 		int searchChoice;
+		int flag=0;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("1 : Search a student");
 		System.out.println("2 : search a coure");
@@ -349,7 +362,7 @@ class University
 		switch(searchChoice)
 		{
 			case 1: //search a student
-					int flag1=0;
+					
 					System.out.println("Enter id of student  to be searched: ");
 					int studId=sc.nextInt();
 					for(Student student:studentList)
@@ -357,14 +370,13 @@ class University
 						{
 							System.out.println("student found");
 							displayDetails(student);
-							flag1++;
+							flag++;
 						}
-					if(flag1==0)
+					if(flag==0)
 						System.out.println("student not found");
 					break;
 		
 			case 2: //search a course
-					int flag2=0;
 					System.out.println("Enter id of course  to be searched: ");
 					String courId=sc.next();
 					for(Course course:courseList)
@@ -372,14 +384,13 @@ class University
 						{
 							System.out.println("course found");
 							displayDetails(course);
-							flag2++;
+							flag++;
 						}
-					if(flag2==0)
+					if(flag==0)
 						System.out.println("course not found");
 					break;
 					
 			case 3: //search a faculty
-					int flag3=0;
 					System.out.println("Enter id of faculty  to be searched: ");
 					int faculId=sc.nextInt();
 					for(Faculty faculty:facultyList)
@@ -387,14 +398,13 @@ class University
 						{
 							System.out.println("faculty found");
 							displayDetails(faculty);
-							flag3++;
+							flag++;
 						}
-					if(flag3==0)
+					if(flag==0)
 						System.out.println("course not found");
 					break;
 				
 			case 4://search whether a student takes a course
-					int flag4=0;
 					System.out.println("Enter id of course to be searched for student");
 					String coursId=sc.next();
 					for(Course course:courseList)
@@ -406,16 +416,15 @@ class University
 								System.out.println("Student list: ");
 								for(String str:course.studentsEnrolled)
 									System.out.println(str);
-								flag4++;
+								flag++;
 							}
 						}
-					if(flag4==0)
+					if(flag==0)
 						System.out.println("student not found");
 						
 					break;
 					
 			case 5://search whether a faculty teaches a course
-					int flag5=0;
 					System.out.println("Enter id of course to be searched for student");
 					String courseId=sc.next();
 					for(Course course:courseList)
@@ -425,15 +434,14 @@ class University
 							{
 								System.out.println("faculty found");
 								displayDetails(course.faculty);
-								flag5++;
+								flag++;
 							}
 						}
-					if(flag5==0)
+					if(flag==0)
 						System.out.println("faculty not found");
 					break;
 				
 			case 6://search course taken by a student
-					int flag6=0;
 					System.out.println("Enter id of student whose courses are searched");
 					int studID=sc.nextInt();
 					for(Student student:studentList)
@@ -441,13 +449,12 @@ class University
 						{
 							System.out.println("courses taken by student");
 							student.displayStudentCourse();
-							flag6++;
+							flag++;
 						}
-					if(flag6==0)
+					if(flag==0)
 						System.out.println("course not found");
 					break;
 			case 7://search course taught by a faculty
-					int flag7=0;
 					System.out.println("Enter id of course  to be searched: ");
 					String couId=sc.next();
 					for(Course course:courseList)
@@ -455,9 +462,9 @@ class University
 						{
 							System.out.println("faculty found");
 							displayDetails(course.faculty);
-							flag7++;
+							flag++;
 						}
-					if(flag7==0)
+					if(flag==0)
 						System.out.println("faculty not found");
 					break;
 					
