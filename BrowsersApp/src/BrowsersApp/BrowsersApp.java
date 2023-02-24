@@ -211,14 +211,14 @@ public class BrowsersApp {
 		}
 		while(sc.nextBoolean());
 		
-		/*//wrapper class
+		//wrapper class
 		int numberOfTabs=allBrowsers.size();
 		Integer numberOfTabsobj=numberOfTabs; //autoboxing
 		
 		System.out.println("integer object number of tabs : "+numberOfTabsobj);
 		
 		int  numberOfTab=numberOfTabsobj;  //unboxing
-		System.out.println("int value number of tabs : "+numberOfTab);*/
+		System.out.println("int value number of tabs : "+numberOfTab);
 		
 	}
 	
