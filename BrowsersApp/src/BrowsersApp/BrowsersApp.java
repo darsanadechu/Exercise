@@ -43,7 +43,7 @@ class Browser
 class GoogleChrome extends Browser
 {
 	
-	static double versionNumber=1.0;
+	static final double versionNumber=1.0;
 	boolean isLocationAccessible=false;
 	boolean isCameraAccessible=false;
 	boolean isMicrophoneAccessible=false;
