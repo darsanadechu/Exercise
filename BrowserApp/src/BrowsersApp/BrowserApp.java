@@ -2,7 +2,132 @@ package BrowsersApp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BrowsersApp {
+//interface
+interface MultipleAccountContainers
+{
+	
+	void addContainer(String container1);
+	void leaveContainer(String container2);
+	void viewAllContainers();
+}
+
+//parent class
+class Browser
+{
+	private ArrayList<String> urlList=new ArrayList<>();
+	Browser()
+	{
+		
+	}
+	//set history
+	void setHistory(String url)
+	{
+		urlList.add(url);
+	}
+	
+	//display history
+	void displayHistory()
+	{
+		System.out.println("History : ");
+		for(String str:urlList)
+			System.out.println(str);
+	}
+	
+	void whoAmI()
+	{
+		System.out.println("I am a browser");
+	}
+}
+
+//sub class google chrome
+class GoogleChrome extends Browser
+{
+	
+	static final double versionNumber=1.0;
+	boolean isLocationAccessible=false;
+	boolean isCameraAccessible=false;
+	boolean isMicrophoneAccessible=false;
+	GoogleChrome()
+	{
+		
+	}
+	
+	
+	@Override void whoAmI()
+	{
+		super.whoAmI();
+		System.out.println("I am Google Chrome\n");
+	}
+	
+	//overloading
+	//set and reset by all permission at a time
+	void setPermissions(boolean b)
+	{
+		isLocationAccessible=b;
+		isCameraAccessible=b;
+		isMicrophoneAccessible=b;
+		
+	}
+	//set and reset by one at a time permission
+	void setPermissions(boolean b1,boolean b2,boolean b3)
+	{
+		isLocationAccessible=b1;
+		isCameraAccessible=b2;
+		isMicrophoneAccessible=b3;
+		
+	}
+	
+	//display permissions
+	void viewPermissions()
+	{
+		System.out.println("Is location accessible : "+isLocationAccessible);
+		System.out.println("Is camera accessible : "+isCameraAccessible);
+		System.out.println("Is microphone accessible : "+isMicrophoneAccessible+"\n");
+	}
+}
+
+//sub class fire fox and implements interface
+class Firefox extends Browser implements MultipleAccountContainers
+{
+	
+	ArrayList<String> containers=new ArrayList<>();
+	Firefox()
+	{
+		
+	}
+	
+	
+	@Override void whoAmI()
+	{
+		super.whoAmI();
+		System.out.println("I am Firefox\n");
+	}
+
+	@Override
+	public void addContainer(String container1) 
+	{
+		
+		containers.add(container1);
+	}
+
+	@Override
+	public void leaveContainer(String container2) 
+	{
+		containers.remove(container2);
+		
+	}
+
+	@Override
+	public void viewAllContainers() 
+	{
+		
+		for(String str:containers)
+			System.out.println(str);
+		System.out.println();
+	}
+}
+
+public class BrowserApp {
 
 	public static void main(String[] arg)
 	{
