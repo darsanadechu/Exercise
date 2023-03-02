@@ -14,26 +14,31 @@ public class BrowserHistory
 		//array to store url history
 		String[] urlList= new String[numberOfBrowsing];
 		int k=0;
+		int index=2;
+		int value=0;
 		for(int i=0;i<numberOfBrowsing;i++)
 		{
 			//new url
 			System.out.println("enter visited url");
 			String url=sc.next();
 			boolean flag=false;
-			for(int j=0;j<urlList.length;j++)
+			for(int j=0;urlList[j]!=null;j++)
 			{
-				if(urlList[j]==null)
-					{
-						break;
-					}
-				String str=urlList[j].substring(0, urlList[j].length()-3);
+				int length=urlList[j].length();
+				index=urlList[j].lastIndexOf("#");
+				if(value>=9)
+					index++;
+				String str=urlList[j].substring(0, (length-(index+1)));
 				//if url is already exsisit
 				if(url.equals(str))
 				{
-					int length=urlList[j].length();
-					char a=urlList[j].charAt(length-1);
-					int value=Character.getNumericValue(a);
-					String newUrl=urlList[j].replace(String.valueOf(a),String.valueOf(value+1));
+					
+					char[] ch = new char[10];
+					urlList[j].getChars(index+1,length,ch,0);
+					String a=new String(ch);
+					a=a.trim();
+					value=Integer.valueOf(a);
+					String newUrl=urlList[j].replace(a,String.valueOf(value+1));
 					urlList[j]=urlList[j].replace(urlList[j],newUrl);
 					flag=true;
 				}
