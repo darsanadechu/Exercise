@@ -1,21 +1,23 @@
 package BrowserHistory;
 import java.util.Scanner;
 
-
 public class BrowserHistory 
 {
 	public static void main(String[] arg)
 	{
 		
 		Scanner sc=new Scanner(System.in);
+		//number of browsing history
 		int numberOfBrowsing;
 		System.out.println("enter number of browsing");
 		numberOfBrowsing=sc.nextInt();
+		//array to store url history
 		String[] urlList= new String[numberOfBrowsing];
 		int k=0;
 		for(int i=0;i<numberOfBrowsing;i++)
 		{
-			System.out.println("enter url");
+			//new url
+			System.out.println("enter visited url");
 			String url=sc.next();
 			boolean flag=false;
 			for(int j=0;j<urlList.length;j++)
@@ -25,6 +27,7 @@ public class BrowserHistory
 						break;
 					}
 				String str=urlList[j].substring(0, urlList[j].length()-3);
+				//if url is already exsisit
 				if(url.equals(str))
 				{
 					int length=urlList[j].length();
@@ -35,19 +38,19 @@ public class BrowserHistory
 					flag=true;
 				}
 			}
+			//if new url comes
 			if(!flag)
 			{
 				url=url.concat("##1");
 				urlList[k]=url;
 				k++;
 			}
+			//print all visited url
 			for(String str1:urlList)
 				if(!(str1==null))
 					System.out.println(str1);
 			
-		}
-		
-		
+		}	
 		
 	}
 	
