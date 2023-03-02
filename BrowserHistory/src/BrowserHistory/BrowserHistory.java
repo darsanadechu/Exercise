@@ -14,8 +14,6 @@ public class BrowserHistory
 		//array to store url history
 		String[] urlList= new String[numberOfBrowsing];
 		int k=0;
-		int index=2;
-		int value=0;
 		for(int i=0;i<numberOfBrowsing;i++)
 		{
 			//new url
@@ -30,12 +28,12 @@ public class BrowserHistory
 				if(url.equals(splitString[0]))
 				{
 					int length=urlList[j].length();
-					index=urlList[j].lastIndexOf("#");
+					int index=urlList[j].lastIndexOf("#");
 					char[] ch = new char[10];
 					urlList[j].getChars(index+1,length,ch,0);
 					String stringValue=new String(ch);
 					stringValue=stringValue.trim();
-					value=Integer.valueOf(stringValue);
+					int value=Integer.valueOf(stringValue);
 					String newUrl=urlList[j].replace(stringValue,String.valueOf(value+1));
 					urlList[j]=urlList[j].replace(urlList[j],newUrl);
 					flag=true;
