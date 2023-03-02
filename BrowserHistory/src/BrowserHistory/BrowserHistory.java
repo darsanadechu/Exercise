@@ -24,15 +24,15 @@ public class BrowserHistory
 			boolean flag=false;
 			for(int j=0;urlList[j]!=null;j++)
 			{
-				int length=urlList[j].length();
-				index=urlList[j].lastIndexOf("#");
 				if(value>=9)
 					index++;
-				String str=urlList[j].substring(0, (length-(index+1)));
-				//if url is already exsisit
+				//taking url without ## number
+				String str=urlList[j].substring(0, (urlList[j].length()-(index+1)));
+				//if url is already exist
 				if(url.equals(str))
 				{
-					
+					int length=urlList[j].length();
+					index=urlList[j].lastIndexOf("#");
 					char[] ch = new char[10];
 					urlList[j].getChars(index+1,length,ch,0);
 					String a=new String(ch);
