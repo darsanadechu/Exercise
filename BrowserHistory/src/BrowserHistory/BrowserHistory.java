@@ -42,7 +42,8 @@ public class BrowserHistory
 				k++;
 			}
 			for(String str1:urlList)
-				System.out.println(str1);
+				if(!(str1==null))
+					System.out.println(str1);
 			
 		}
 		
