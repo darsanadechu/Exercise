@@ -44,5 +44,34 @@ public class StringOperations
 		//substring
 		System.out.println("substring of darsana with index 3 :"+s1.substring(3));
 		System.out.println("substring of darsana with index 1 to 7:"+s1.substring(1,6));
+		System.out.println();
+		
+		String string5="Today .is a good. day";
+		System.out.println(string5);
+		
+		//split
+		System.out.println("splitted words using space");
+		String[] words=string5.split("\\s");
+		for(String st:words)
+			System.out.println(st);
+		System.out.println();
+		System.out.println("splitted words using .");
+		String[] words1=string5.split("\\.");
+		for(String st:words1)
+			System.out.println(st);
+		System.out.println();
+		
+		//contains
+		System.out.println("is string contains word good :"+string5.contains("good"));
+		
+		//getChars
+		System.out.println("string at 12 index :");
+		char[] ch=new char[10];
+		string5.getChars(12,16,ch,0);
+		System.out.println(ch);
+		System.out.println("uppercase :");
+		System.out.println(string5.toUpperCase());
+		System.out.println("lowercase :");
+		System.out.println(string5.toLowerCase());
 	}
 }
