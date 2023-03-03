@@ -46,7 +46,6 @@ public class BrowserHistory
 			//when new url comes
 			if(!flag)
 			{
-				System.out.println("yes");
 				url.append("##1");
 				urlList.add(url);
 			}
