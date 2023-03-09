@@ -76,7 +76,7 @@ public class InnerClass {
 		for(int i=1;i<10;i++)
 		{
 			System.out.println("Menu :");
-			System.out.println("1: add urls");
+			System.out.println("1: add urls and bookmarks");
 			System.out.println("2: display urls");
 			System.out.println("3: display bookmark");
 			System.out.println("4: display shortcut");
