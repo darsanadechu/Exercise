@@ -55,10 +55,8 @@ public class InnerClass {
 
 	public static void main(String[] arg)
 	{
-		int count;
+		boolean choice;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("enter number of browsing :");
-		count=sc.nextInt();
 		ArrayList<String> shortcut = new ArrayList<>();
 		
 		Browser Browser1 = new Browser()
@@ -76,8 +74,7 @@ public class InnerClass {
 		//display shortcut
 		System.out.println("shortcuts keys : ");
 		Browser1.Shortcut();
-		System.out.println();
-		for(int i=1;i<=count;i++)
+		do
 		{
 			
 			System.out.println("enter url");
@@ -102,7 +99,9 @@ public class InnerClass {
 			bookMark.displayBookMarks();
 			System.out.println();
 			
-		}
+			System.out.println("want to browse more ");
+			choice = sc.nextBoolean();
+		}while(choice);
 		
 	}
 }
