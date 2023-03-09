@@ -118,7 +118,6 @@ public class InnerClass {
 			default: System.out.println("invalid choice");
 					
 					
-			
 			}
 		}
 	}
