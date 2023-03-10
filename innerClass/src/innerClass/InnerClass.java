@@ -1,63 +1,19 @@
 package innerClass;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-abstract //main class
-class Browser
-{
-	abstract void Shortcut();
-	//member inner class
-	class BookMarks
-	{
-		static ArrayList<String> bookMark = new ArrayList<>();
-		
-		//add a bookMark
-		void setBookMark(String url)
-		{
-			bookMark.add(url);
-		}
-		
-		//view bookMarks
-		void displayBookMarks()
-		{
-			System.out.println("BookMarks :");
-			for(String str:bookMark)
-				System.out.println(str);
-		}
-		
-	}
-	
-	
-	//static nested class
-	static class History
-	{
-		static ArrayList<String> history = new ArrayList<>();
-		
-		//set history
-		static void setHistory(String url)
-		{
-			history.add(url);
-		}
-		
-		//display history
-		static void displayHistory()
-		{
-			System.out.println("History : ");
-			for(String str:history)
-				System.out.println(str);
-		}
-	}
-
-}
-	
+//main method	
 public class InnerClass {
 
-	public static void main(String[] arg)
+	public static void main(String[] arg) throws Exception
 	{
-		boolean BookMarkChoice;
+		boolean BookMarkChoice = false;
+		int choice=0;
 		Scanner sc = new Scanner(System.in);
 		ArrayList<String> shortcut = new ArrayList<>();
+		
 		
 		Browser Browser1 = new Browser()
 		{
@@ -73,33 +29,78 @@ public class InnerClass {
 		Browser.BookMarks bookMark = Browser1.new BookMarks();
 		
 		
-		for(int i=1;i<10;i++)
+		do
 		{
+			System.out.println();
 			System.out.println("Menu :");
 			System.out.println("1: add urls and bookmarks");
 			System.out.println("2: display urls");
 			System.out.println("3: display bookmark");
 			System.out.println("4: display shortcut");
+			System.out.println("5: delete url");
+			System.out.println("6: move backward");
+			System.out.println("7: move forward");
+			System.out.println("8: exit ");
+			
+			
 			
 			System.out.println("enter your choice ");
-			int choice=sc.nextInt();
+			try
+			{
+				choice=sc.nextInt();
+			}catch(InputMismatchException e) 
+			{
+				System.out.println(e);
+				System.out.println("entered choice is wrong");
+				sc.nextLine();
+				continue;
+			}
+			
 			switch(choice)
 			{
 			case 1: do
 					{
+				
 						//history
 						System.out.println("enter url");
 						String url = sc.next();
-						Browser.History.setHistory(url);
-									
+						if(url.endsWith(".com") || url.endsWith(".in") || url.endsWith(".org"))
+						{
+							Browser.History.setHistory(url);
+						}
+						else
+						{
+							try
+							{
+								throw new InvalidUrlException("Invalid URL format");
+							}
+							catch(InvalidUrlException e) 
+							{
+								System.out.println("Invalid URL format");
+								sc.nextLine();
+								continue;
+							}
+						}
+								
+						
 						//bookMark
 						System.out.println("want to bookmark url");
-						if(sc.nextBoolean())
+						try
 						{
-							bookMark.setBookMark(url);
+							if(sc.nextBoolean())
+							{
+								bookMark.setBookMark(url);
+							}
+							System.out.println("want to browse more ");
+						
+							BookMarkChoice = sc.nextBoolean();
 						}
-						System.out.println("want to browse more ");
-						BookMarkChoice = sc.nextBoolean();
+						catch(InputMismatchException e)
+						{
+							System.out.println("mismatched input format");
+							sc.nextLine();
+							continue;
+						}
 					}while(BookMarkChoice);
 					break;
 					
@@ -115,10 +116,35 @@ public class InnerClass {
 					System.out.println("shortcuts keys : ");
 					Browser1.Shortcut();
 					break;
+					
+			case 5: //delete url
+					System.out.println("enter url to be deleted");
+					Browser.History.deleteHistory(sc.next());
+					break;
+					
+			case 6: //move backward
+					System.out.println("enter the current url visiting");
+					String currentUrl=sc.next();
+					System.out.println("enter the number of steps to move back");
+					int steps=sc.nextInt();
+					Browser.History.moveBackward(currentUrl,steps);
+					break;
+				
+			case 7: //move backward
+					System.out.println("enter the current url visiting");
+					String currentUrl1=sc.next();
+					System.out.println("enter the number of steps to move forward");
+					int steps1=sc.nextInt();
+					Browser.History.moveForward(currentUrl1,steps1);
+					break;
+			case 8://exit
+					System.out.println("exiting the menu");
+					break;
 			default: System.out.println("invalid choice");
 					
 					
 			}
-		}
+			
+		}while(choice!=8);
 	}
 }
