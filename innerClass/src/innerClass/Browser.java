@@ -51,17 +51,22 @@ abstract class Browser
 		static void deleteHistory(String url)
 		{
 			boolean flag = true;
+			String deleteUrl=null;
 			for(String str:history)
 			{
 				if(url.equals(str))
 				{
-					history.remove(url);
-					System.out.println("url deleted");
+					deleteUrl = url;
 					flag = false;
 				}
 			}
 			if(flag)
 				System.out.println(url +" not found");
+			else
+			{
+				history.remove(deleteUrl);
+				System.out.println("url deleted");
+			}
 		}
 		
 		static void moveBackward(String currentUrl,int steps) throws IndexOutOfBoundsException
@@ -77,7 +82,7 @@ abstract class Browser
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-				System.out.println("url not found in the index");
+				System.out.println("url history not found");
 			}
 
 		}
@@ -96,7 +101,7 @@ abstract class Browser
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-				System.out.println("url not found in the index");
+				System.out.println("url history not found");
 			}
 
 		}

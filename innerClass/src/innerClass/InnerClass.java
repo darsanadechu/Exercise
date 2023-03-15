@@ -1,5 +1,4 @@
 package innerClass;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -12,8 +11,6 @@ public class InnerClass {
 		boolean BookMarkChoice = false;
 		int choice=0;
 		Scanner sc = new Scanner(System.in);
-		ArrayList<String> shortcut = new ArrayList<>();
-		
 		
 		Browser Browser1 = new Browser()
 		{
