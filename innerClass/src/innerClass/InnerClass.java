@@ -37,11 +37,12 @@ public class InnerClass {
 			System.out.println("5: delete url");
 			System.out.println("6: move backward");
 			System.out.println("7: move forward");
-			System.out.println("8: exit ");
-			
+			System.out.println("8: get url in the given position");
+			System.out.println("9: exit ");
 			
 			
 			System.out.println("enter your choice ");
+			
 			try
 			{
 				choice=sc.nextInt();
@@ -69,11 +70,11 @@ public class InnerClass {
 						{
 							try
 							{
-								throw new InvalidUrlException("Invalid URL format");
+								throw new InvalidURLException("Invalid URL extension");
 							}
-							catch(InvalidUrlException e) 
+							catch(InvalidURLException e) 
 							{
-								System.out.println("Invalid URL format");
+								System.out.println("Invalid URL extension");
 								sc.nextLine();
 								continue;
 							}
@@ -120,21 +121,71 @@ public class InnerClass {
 					break;
 					
 			case 6: //move backward
-					System.out.println("enter the current url visiting");
-					String currentUrl=sc.next();
-					System.out.println("enter the number of steps to move back");
-					int steps=sc.nextInt();
-					Browser.History.moveBackward(currentUrl,steps);
+					String currentUrl=null;
+					int steps=0;
+					try
+					{
+						System.out.println("enter the current url visiting");
+						currentUrl=sc.next();
+						System.out.println("enter the number of steps to move back");
+						steps=sc.nextInt();
+					}
+					catch(InputMismatchException e)
+					{
+						System.out.println("mismatched input format");
+					}
+					String url = Browser.History.moveBackward(currentUrl,steps);
+					try
+					{
+						if(url!=null)
+						 System.out.println("History: "+url);
+						else
+							throw new NoHistoryFoundException("No History Found");
+					}
+					catch(NoHistoryFoundException e)
+					{
+						System.out.println("No History Found");
+					}
 					break;
 				
 			case 7: //move backward
-					System.out.println("enter the current url visiting");
-					String currentUrl1=sc.next();
-					System.out.println("enter the number of steps to move forward");
-					int steps1=sc.nextInt();
-					Browser.History.moveForward(currentUrl1,steps1);
+					String currentUrl1=null;
+					int steps1=0;
+					try
+					{
+						System.out.println("enter the current url visiting");
+						currentUrl1=sc.next();
+						System.out.println("enter the number of steps to move forward");
+						steps1 = sc.nextInt();
+					}
+					catch(InputMismatchException e)
+					{
+						System.out.println("mismatched input format");
+					}
+					
+					String url1 = Browser.History.moveForward(currentUrl1,steps1);
+					try
+					{
+						if(url1!=null)
+							System.out.println("History "+url1);
+						else
+							throw new NoHistoryFoundException("No History Found");
+					}
+					catch(NoHistoryFoundException e)
+					{
+						System.out.println("No History Found");
+					}
 					break;
-			case 8://exit
+					
+			case 8: //get url in given position
+					System.out.println("enter position of url to be printed");
+					int position = sc.nextInt();
+					String url2 = Browser.History.get(position);
+					if(url2!=null)
+						System.out.println("URL at "+position+" is : "+url2);
+					break;
+				
+			case 9://exit
 					System.out.println("exiting the menu");
 					break;
 			default: System.out.println("invalid choice");
@@ -142,6 +193,6 @@ public class InnerClass {
 					
 			}
 			
-		}while(choice!=8);
+		}while(choice!=9);
 	}
 }

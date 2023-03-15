@@ -69,41 +69,75 @@ abstract class Browser
 			}
 		}
 		
-		static void moveBackward(String currentUrl,int steps) throws IndexOutOfBoundsException
+		static String moveBackward(String currentUrl,int steps) throws IndexOutOfBoundsException
 		{
 			int currentIndex = history.indexOf(currentUrl);
 			int newIndex = currentIndex-steps;
+			String url = null;
 			try
 			{
 				if(history.get(newIndex) != null)
 				{
-					System.out.println("url : "+history.get(newIndex));
+					url = history.get(newIndex);
 				}
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-				System.out.println("url history not found");
+			}
+			finally
+			{
+				return url;
 			}
 
 		}
 		
 		
-		static void moveForward(String currentUrl,int steps) throws IndexOutOfBoundsException
+		static String moveForward(String currentUrl,int steps) throws IndexOutOfBoundsException
 		{
 			int currentIndex = history.indexOf(currentUrl);
 			int newIndex = currentIndex+steps;
+			String url1 = null;
 			try
 			{
 				if(history.get(newIndex) != null)
 				{
-					System.out.println("url : "+history.get(newIndex));
+					url1 = history.get(newIndex);
 				}
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-				System.out.println("url history not found");
+			}
+			finally
+			{
+				return url1;
 			}
 
+		}
+		
+		static String get(int position)
+		{
+			String url2=null;
+			try
+			{
+				if(position < 0)
+					throw new InvalidPositionException("Invalid position");
+				else if(position>history.size())
+					throw new IndexOutOfBoundsException("Invalid position");
+				else
+					url2 = history.get(position);
+			}
+			catch(InvalidPositionException e)
+			{
+				System.out.println("Provide only positive values");
+			}
+			catch(IndexOutOfBoundsException e)
+			{
+				System.out.println("Invalid position");
+			}
+			finally
+			{
+				return url2;
+			}
 		}
 	}
 
