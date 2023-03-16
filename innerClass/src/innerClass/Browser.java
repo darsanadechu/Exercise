@@ -83,11 +83,9 @@ abstract class Browser
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-			}
-			finally
-			{
 				return newUrl;
 			}
+			return newUrl;
 
 		}
 		
@@ -106,11 +104,9 @@ abstract class Browser
 			}
 			catch (IndexOutOfBoundsException e)
 			{
-			}
-			finally
-			{
 				return newUrl1;
 			}
+			return newUrl1;
 
 		}
 		
@@ -124,20 +120,22 @@ abstract class Browser
 				else if(position>history.size())
 					throw new IndexOutOfBoundsException("Invalid position");
 				else
+				{
 					newUrl2 = history.get(position);
+					return newUrl2;
+				}
 			}
 			catch(InvalidPositionException e)
 			{
 				System.out.println("Provide only positive values");
+				return newUrl2;
 			}
 			catch(IndexOutOfBoundsException e)
 			{
 				System.out.println("Invalid position");
-			}
-			finally
-			{
 				return newUrl2;
 			}
+		
 		}
 	}
 
