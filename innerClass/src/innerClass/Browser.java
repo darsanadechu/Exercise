@@ -73,12 +73,12 @@ abstract class Browser
 		{
 			int currentIndex = history.indexOf(currentUrl);
 			int newIndex = currentIndex-steps;
-			String url = null;
+			String newUrl = null;
 			try
 			{
 				if(history.get(newIndex) != null)
 				{
-					url = history.get(newIndex);
+					newUrl = history.get(newIndex);
 				}
 			}
 			catch (IndexOutOfBoundsException e)
@@ -86,7 +86,7 @@ abstract class Browser
 			}
 			finally
 			{
-				return url;
+				return newUrl;
 			}
 
 		}
@@ -96,12 +96,12 @@ abstract class Browser
 		{
 			int currentIndex = history.indexOf(currentUrl);
 			int newIndex = currentIndex+steps;
-			String url1 = null;
+			String newUrl1 = null;
 			try
 			{
 				if(history.get(newIndex) != null)
 				{
-					url1 = history.get(newIndex);
+					newUrl1 = history.get(newIndex);
 				}
 			}
 			catch (IndexOutOfBoundsException e)
@@ -109,14 +109,14 @@ abstract class Browser
 			}
 			finally
 			{
-				return url1;
+				return newUrl1;
 			}
 
 		}
 		
-		static String get(int position)
+		static String get(int position) throws InvalidPositionException,IndexOutOfBoundsException
 		{
-			String url2=null;
+			String newUrl2=null;
 			try
 			{
 				if(position < 0)
@@ -124,7 +124,7 @@ abstract class Browser
 				else if(position>history.size())
 					throw new IndexOutOfBoundsException("Invalid position");
 				else
-					url2 = history.get(position);
+					newUrl2 = history.get(position);
 			}
 			catch(InvalidPositionException e)
 			{
@@ -136,7 +136,7 @@ abstract class Browser
 			}
 			finally
 			{
-				return url2;
+				return newUrl2;
 			}
 		}
 	}

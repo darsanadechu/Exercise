@@ -9,7 +9,7 @@ public class InnerClass {
 	public static void main(String[] arg) throws Exception
 	{
 		boolean BookMarkChoice = false;
-		int choice=0;
+		String choice=null;
 		Scanner sc = new Scanner(System.in);
 		
 		Browser Browser1 = new Browser()
@@ -38,14 +38,14 @@ public class InnerClass {
 			System.out.println("6: move backward");
 			System.out.println("7: move forward");
 			System.out.println("8: get url in the given position");
-			System.out.println("9: exit ");
+			System.out.println("exit: exit ");
 			
 			
 			System.out.println("enter your choice ");
 			
 			try
 			{
-				choice=sc.nextInt();
+				choice=sc.next();
 			}catch(InputMismatchException e) 
 			{
 				System.out.println(e);
@@ -56,7 +56,7 @@ public class InnerClass {
 			
 			switch(choice)
 			{
-			case 1: do
+			case "1": do
 					{
 				
 						//history
@@ -102,25 +102,25 @@ public class InnerClass {
 					}while(BookMarkChoice);
 					break;
 					
-			case 2: //display history
+			case "2": //display history
 					Browser.History.displayHistory();
 					break;
 					
-			case 3: //display bookMarks
+			case "3": //display bookMarks
 					bookMark.displayBookMarks();
 					break;
 					
-			case 4: //display shortcut
+			case "4": //display shortcut
 					System.out.println("shortcuts keys : ");
 					Browser1.Shortcut();
 					break;
 					
-			case 5: //delete url
+			case "5": //delete url
 					System.out.println("enter url to be deleted");
 					Browser.History.deleteHistory(sc.next());
 					break;
 					
-			case 6: //move backward
+			case "6": //move backward
 					String currentUrl=null;
 					int steps=0;
 					try
@@ -148,7 +148,7 @@ public class InnerClass {
 					}
 					break;
 				
-			case 7: //move backward
+			case "7": //move backward
 					String currentUrl1=null;
 					int steps1=0;
 					try
@@ -177,7 +177,7 @@ public class InnerClass {
 					}
 					break;
 					
-			case 8: //get url in given position
+			case "8": //get url in given position
 					System.out.println("enter position of url to be printed");
 					int position = sc.nextInt();
 					String url2 = Browser.History.get(position);
@@ -185,7 +185,7 @@ public class InnerClass {
 						System.out.println("URL at "+position+" is : "+url2);
 					break;
 				
-			case 9://exit
+			case "exit"://exit
 					System.out.println("exiting the menu");
 					break;
 			default: System.out.println("invalid choice");
@@ -193,6 +193,6 @@ public class InnerClass {
 					
 			}
 			
-		}while(choice!=9);
+		}while(!choice.equals("exit"));
 	}
 }
