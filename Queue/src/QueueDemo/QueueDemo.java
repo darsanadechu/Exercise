@@ -26,6 +26,11 @@ class Student implements Comparable<Student>
 		else
 			return 0;
 	}
+	
+	public String toString()
+	{
+		return rank+" "+name+" "+score;
+	}
 }
 
 public class QueueDemo {
@@ -51,7 +56,7 @@ public class QueueDemo {
 		while(itr.hasNext())
 		{
 			Student s = itr.next();
-			System.out.println(s.rank+" "+s.name+" "+s.score);
+			System.out.println(s.toString());
 		}
 		
 		
@@ -64,7 +69,7 @@ public class QueueDemo {
 		while(i.hasNext())
 		{
 			Student s = i.next();
-			System.out.println(s.rank+" "+s.name+" "+s.score);
+			System.out.println(s.toString());
 		}
 		
 		
