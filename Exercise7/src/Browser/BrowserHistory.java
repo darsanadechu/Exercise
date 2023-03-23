@@ -34,7 +34,7 @@ public class BrowserHistory {
 			//add to lists
 			historyList.add(url);
 			historyLinkedList.add(url);
-			historyStack.add(url);
+			historyStack.push(url);
 			
 			
 			//add to sets
@@ -416,25 +416,6 @@ public class BrowserHistory {
 		//treeSet
 		historyTreeSet.remove(oldUrl);
 		historyTreeSet.add(updateUrl);
-		
-		//Map
-		historyHashMap.get(oldExtension).remove(oldUrl);
-		historyLinkedHashMap.get(oldExtension).remove(oldUrl);
-		historyTreeMap.get(oldExtension).remove(oldUrl);
-		Set<String> keys = historyHashMap.keySet();
-		if(!keys.contains(newExtension))
-		{
-			historyHashMap.put(newExtension, new ArrayList<String>());
-			historyLinkedHashMap.put(newExtension, new ArrayList<String>());
-			historyTreeMap.put(newExtension, new ArrayList<String>());
-			
-		}
-
-		historyHashMap.get(newExtension).add(updateUrl);
-		historyLinkedHashMap.get(newExtension).add(updateUrl);
-		historyTreeMap.get(newExtension).add(updateUrl);
-		
-			
 		
 		
 		System.out.println();
