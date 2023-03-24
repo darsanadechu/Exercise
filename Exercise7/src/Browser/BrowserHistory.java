@@ -103,6 +103,7 @@ public class BrowserHistory {
 	//delete history by index
 	void deleteHistory(int index)
 	{
+		String deleteUrl = historyList.get(index);
 		
 		//arrayList
 		historyList.remove(index);
@@ -118,6 +119,23 @@ public class BrowserHistory {
 		historyStack.remove(index);
 		System.out.println("element deleted from stack :");
 		System.out.println(historyStack);
+		
+		
+		//hashSet
+		historyHashSet.remove(deleteUrl);
+		System.out.println("element deleted from hashSet :");
+		System.out.println(historyHashSet);
+				
+		//linkedHashSet
+		historyLinkedHashSet.remove(deleteUrl);
+		System.out.println("element deleted from LinkedHashSet :");
+		System.out.println(historyLinkedHashSet);
+				
+		//linkedHashSet
+		historyTreeSet.remove(deleteUrl);
+		System.out.println("element deleted from TreeSet :");
+		System.out.println(historyTreeSet);
+		
 		
 		System.out.println();
 	}
@@ -392,11 +410,9 @@ public class BrowserHistory {
 	void updateHistory(int index)
 	{
 		String oldUrl = historyList.get(index);
-		String oldExtension = oldUrl.substring(oldUrl.lastIndexOf("."));
 		
 		System.out.println("enter updated url :");
 		String updateUrl = sc.next();
-		String newExtension = updateUrl.substring(updateUrl.lastIndexOf("."));
 		
 		//arrayList
 		historyList.set(index, updateUrl);
