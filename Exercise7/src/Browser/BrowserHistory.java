@@ -279,62 +279,50 @@ public class BrowserHistory {
 		
 		//arrayList
 		System.out.println("urls with extension "+extension+" in arrayList: ");
-		Iterator<String> itr1 = historyList.iterator();
-		while(itr1.hasNext())
+		for(String str:historyList)
 		{
-			String url = (String) itr1.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		//linkedList
 		System.out.println("urls with extension "+extension+" in LinkedList: ");
-		Iterator<String> itr2 = historyLinkedList.iterator();
-		while(itr2.hasNext())
+		for(String str:historyLinkedList)
 		{
-			String url = (String) itr2.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		//stack
 		System.out.println("urls with extension "+extension+" in stack: ");
-		Iterator<String> itr3 = historyStack.iterator();
-		while(itr3.hasNext())
+		for(String str:historyStack)
 		{
-			String url = (String) itr3.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		//hashSet
 		System.out.println("urls with extension "+extension+" in hashSet: ");
-		Iterator<String> itr4 = historyHashSet.iterator();
-		while(itr4.hasNext())
+		for(String str:historyHashSet)
 		{
-			String url = (String) itr4.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		//linkedHashSet
 		System.out.println("urls with extension "+extension+" in LinkedHashSet: ");
-		Iterator<String> itr5 = historyLinkedHashSet.iterator();
-		while(itr5.hasNext())
+		for(String str:historyLinkedHashSet)
 		{
-			String url = (String) itr5.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		//treeSet
 		System.out.println("urls with extension "+extension+" in TreeSet: ");
-		Iterator<String> itr6 = historyTreeSet.iterator();
-		while(itr6.hasNext())
+		for(String str:historyTreeSet)
 		{
-			String url = (String) itr6.next();
-			if(url.endsWith(extension))
-				System.out.println(url);
+			if(str.endsWith(extension))
+				System.out.println(str);
 		}
 		
 		System.out.println();
