@@ -26,7 +26,8 @@ public class BrowserHistory {
 	//add url
 	void visit(String url) throws InvalidURLException
 	{
-		String extension = url.substring(url.lastIndexOf("."));
+		String[] urlExtension = url.split("\\.");
+		String extension = "."+urlExtension[urlExtension.length-1];
 		
 		if(url.endsWith(".com") || url.endsWith(".org") || url.endsWith(".in"))
 		{
@@ -144,37 +145,50 @@ public class BrowserHistory {
 	//delete history bu url
 	void deleteHistory(String deleteUrl)
 	{
-		
-		//arrayList
-		historyList.remove(deleteUrl);
-		System.out.println("element deleted from arrayList :");
-		System.out.println(historyList);
-		
-		//linkedList
-		historyLinkedList.remove(deleteUrl);
-		System.out.println("element deleted from linkedList :");
-		System.out.println(historyLinkedList);
-		
-		//stack
-		historyStack.remove(deleteUrl);
-		System.out.println("element deleted from stack :");
-		System.out.println(historyStack);
-		
-		
-		//hashSet
-		historyHashSet.remove(deleteUrl);
-		System.out.println("element deleted from hashSet :");
-		System.out.println(historyHashSet);
-		
-		//linkedHashSet
-		historyLinkedHashSet.remove(deleteUrl);
-		System.out.println("element deleted from LinkedHashSet :");
-		System.out.println(historyLinkedHashSet);
-		
-		//linkedHashSet
-		historyTreeSet.remove(deleteUrl);
-		System.out.println("element deleted from TreeSet :");
-		System.out.println(historyTreeSet);
+		int flag=0;
+		for(String str:historyList)
+	         {
+				 if(str.equals(deleteUrl))
+	        	 {
+					 flag++;
+	        	 }
+	        }
+	
+		 if(flag!=0)
+		 {
+			//arrayList
+			historyList.remove(deleteUrl);
+			System.out.println("element deleted from arrayList :");
+			System.out.println(historyList);
+			
+			//linkedList
+			historyLinkedList.remove(deleteUrl);
+			System.out.println("element deleted from linkedList :");
+			System.out.println(historyLinkedList);
+			
+			//stack
+			historyStack.remove(deleteUrl);
+			System.out.println("element deleted from stack :");
+			System.out.println(historyStack);
+			
+			
+			//hashSet
+			historyHashSet.remove(deleteUrl);
+			System.out.println("element deleted from hashSet :");
+			System.out.println(historyHashSet);
+			
+			//linkedHashSet
+			historyLinkedHashSet.remove(deleteUrl);
+			System.out.println("element deleted from LinkedHashSet :");
+			System.out.println(historyLinkedHashSet);
+			
+			//linkedHashSet
+			historyTreeSet.remove(deleteUrl);
+			System.out.println("element deleted from TreeSet :");
+			System.out.println(historyTreeSet);
+		 }
+		 else
+			 System.out.println("url not found");
 		
 		System.out.println();
 	}
@@ -185,28 +199,20 @@ public class BrowserHistory {
 	{
 		System.out.println("enter extension of url to be deleted");
         String deleteExtension = sc.next();
-        Set<String> keys = historyHashMap.keySet();
-        String removeKey = null;
-        for(String str:keys)
-		{
-			if(str.equals(deleteExtension))
-			{
-				removeKey = str;
-			}
-				
-		}
+     
+       
         //hashMap
-        historyHashMap.remove(removeKey);
+        historyHashMap.remove(deleteExtension);
         System.out.println("element deleted from hashMap :");
 		System.out.println(historyHashMap);
 		
 		//linkedHashMap
-		historyLinkedHashMap.remove(removeKey);
+		historyLinkedHashMap.remove(deleteExtension);
 		System.out.println("element deleted from LinkedHashMap :");
 		System.out.println(historyLinkedHashMap);
 		
 		//treeMap
-		historyTreeMap.remove(removeKey);
+		historyTreeMap.remove(deleteExtension);
 		System.out.println("element deleted from treeMap :");
 		System.out.println(historyTreeMap);
         

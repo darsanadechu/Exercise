@@ -59,8 +59,17 @@ public class Browser {
 					  
 			case "3": //delete url by index
 				      System.out.println("enter index of url to be deleted");
-					  int index = sc.nextInt();
-					  B.deleteHistory(index);
+				      try
+				      {
+						  int index = sc.nextInt();
+						  if(index<0 || index>B.historyList.size())
+							  throw new InvalidPositionException("Invalid index position");
+						  B.deleteHistory(index);
+				      }
+				      catch(InvalidPositionException e)
+				      {
+				    	  System.out.println("invalid index position");
+				      }
 					  break;
 					  
 					  
@@ -117,8 +126,17 @@ public class Browser {
 					  
 			case "12"://update url by index 
 				      System.out.println("enter index of url to be edited");
-			          int editIndex = sc.nextInt();
-				      B.updateHistory(editIndex);
+				      try
+				      {
+				          int editIndex = sc.nextInt();
+				          if(editIndex<0 || editIndex>B.historyList.size())
+				        	  throw new InvalidPositionException("Invalid index position");
+					      B.updateHistory(editIndex);
+				      }
+				      catch(InvalidPositionException e)
+				      {
+				    	  System.out.println("invalid index position");
+				      }
 				      break;
 				
 				      
