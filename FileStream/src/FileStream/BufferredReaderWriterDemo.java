@@ -19,6 +19,7 @@ public class BufferredReaderWriterDemo {
 			writer.newLine();
 			writer.write("Ernakulam");
 			writer.close();
+			file.close();
 			
 			System.out.println("contents:");
 			FileReader file1 = new FileReader("/Users/darsana-temp/Documents/stream/file4.txt");
@@ -29,6 +30,7 @@ public class BufferredReaderWriterDemo {
 			
 		
 			reader.close();
+			file1.close();
 			
 		}
 		catch(Exception e)
