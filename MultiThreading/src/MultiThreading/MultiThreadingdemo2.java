@@ -1,5 +1,6 @@
 package MultiThreading;
 
+
 class MultiThread1 extends Thread
 {
 	
