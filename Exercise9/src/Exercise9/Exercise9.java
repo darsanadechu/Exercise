@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
+
 //custom exception
 class InvalidURLException extends Exception
 {
@@ -18,6 +19,7 @@ class Browser
 {
 	public static ArrayList<String> history = new ArrayList<>();
 	
+	
 	//visit url
 	void visit(String url)
 	{
@@ -28,50 +30,27 @@ class Browser
 	
 	
 	//display history
-	void display()
+	synchronized void display()
 	{
+		
 		System.out.println("History : ");
 		for(String str : history)
 			System.out.println(str);
-		
 	}
 	
-}
-
-//readHistory thread
-class ReadHistory extends Thread
-{
-	
-	public void run()
+	//delete history
+	synchronized void delete()
 	{
-		System.out.println("History :");
-		for(String str:Browser.history)
-			System.out.println(str);
-		
-	}
-}
-
-
-//deleteHistory thread
-class DeleteHistory extends Thread 
-{
-	Scanner sc = new Scanner(System.in);
-	
-	public void run()
-	{
-		System.out.println("enter url to be deleted");
-		String url = sc.next();
-		if(Browser.history.contains(url))
+		int len = Browser.history.size();
+		for(int i=0;i<len;i++)
 		{	
-			Browser.history.remove(url);
-			System.out.println("url deleted");
+			System.out.println(Browser.history);
+			Browser.history.remove(0);
+			
 		}
-		else
-		{
-			System.out.println("url not found");
-		}
-		
+		System.out.println("history deleted");
 	}
+	
 }
 
 //main class
@@ -80,77 +59,61 @@ public class Exercise9 {
 	public static void main(String[] arg)
 	{
 		
-		try
-		{
 			Browser B = new Browser();			
 			Scanner sc = new Scanner(System.in);
+			boolean choice;
 			
-			String choice;
+			//read thread
+			Thread ReadHistory = new Thread()
+					{
+				public void run()
+				{
+						B.display();
+					
+				}
+				
+					};
 			
+			//delete thread
+			Thread DeleteHistory = new Thread()
+					{
+				public void run()
+				{
+
+					B.delete();
+				}
+					};
+			
+			
+			//visit urls
 			do
 			{
-				ReadHistory t1 = new ReadHistory();
-				DeleteHistory t2 = new DeleteHistory();
-			
-				System.out.println("MENU");
-				System.out.println("1: visit url");
-				System.out.println("2: read and delete history");
-				System.out.println("exit : exit menu");
-				
-				System.out.println("enter choice");
-				choice = sc.next();
-				
-				switch(choice)
-				{
-				
-				case "1": //visit url
-						  System.out.println("enter visited url");
-						  String url = sc.next();
-						  try
-						  {
-							  if(url.endsWith(".com") || url.endsWith(".org") || url.endsWith(".in"))
-							  {
+				System.out.println("enter visited url");
+				String url = sc.next();
+				try
+		  		  {
+					  if(url.endsWith(".com") || url.endsWith(".org") || url.endsWith(".in"))
+					  {
 							  B.visit(url);
-							  B.display();
-					  		  
-							  }
-							  else
-								  throw new InvalidURLException("Invalid URL extension");
-						  }
-						  catch(InvalidURLException e)
-						  {
-							  System.out.println("Invalid URL extension");
-						  }
-						  break;
-						  
-				case "2": //read and delete history
-					      t1.start();
-					      t1.join();
-					      t2.start();
-					      t2.join();
-					      break;
-				       	 
-					
-				case "exit": //exit
-							 System.out.println("exiting menu");
-							 break;
-		             
-		             
-		             
-				default : System.out.println("invalid choice"); 
-		
-				}
-		
-			}while(!choice.equals("exit"));
+					  }
+					  else
+						  throw new InvalidURLException("Invalid URL extension");
+		  		  }
+				  catch(InvalidURLException e)
+		  		  {
+		  			  System.out.println("Invalid URL extension");
+		  		  }
+				System.out.println("want to visist more");
+			    choice = sc.nextBoolean();
+			}
+			while(choice);
 			
+	
+			ReadHistory.start();
+			DeleteHistory.start();
+
 			
-			
-			
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
+
 	}
 
 }
