@@ -61,7 +61,15 @@ class DeleteHistory extends Thread
 	{
 		System.out.println("enter url to be deleted");
 		String url = sc.next();
-		Browser.history.remove(url);
+		if(Browser.history.contains(url))
+		{	
+			Browser.history.remove(url);
+			System.out.println("url deleted");
+		}
+		else
+		{
+			System.out.println("url not found");
+		}
 		
 	}
 }
